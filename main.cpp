@@ -12,23 +12,24 @@ int main()
     // Define custom camera
     Camera camera = { { 18.0f, 18.0f, 18.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
 
-    Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
-    Texture2D texture = LoadTextureFromImage(image);                // Convert image to texture (VRAM)
+    TextureCreator creator(8);   
+    creator.saveGeneratedMap();
 
-    Mesh mesh = GenMeshHeightmap(image, (Vector3){ 16, 4, 16 });    // Generate heightmap mesh (RAM and VRAM)
+    //Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
+    Texture2D texture = LoadTextureFromImage(creator.getGeneratedImage());                // Convert image to texture (VRAM)
+
+    Mesh mesh = GenMeshHeightmap(creator.getGeneratedImage(), (Vector3){ 16, 4, 16 });    // Generate heightmap mesh (RAM and VRAM)
     Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
 
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;// Set map diffuse texture
     Vector3 mapPosition = { -8.0f, 0.0f, -8.0f };                   // Define model position
 
-    UnloadImage(image);                     // Unload heightmap image from RAM, already uploaded to VRAM
+    UnloadImage(creator.getGeneratedImage());                     // Unload heightmap image from RAM, already uploaded to VRAM
 
     SetCameraMode(camera, CAMERA_ORBITAL);  // Set an orbital camera mode
 
     SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
-    TextureCreator creator;
-    creator.saveGeneratedMap();
+    //--------------------------------------------------------------------------------------    
 
     bool drawRoundedLines = false;
     // Main loop of the app

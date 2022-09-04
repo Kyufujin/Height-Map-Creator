@@ -3,7 +3,13 @@
 
 class TextureCreator{
 public:
+    TextureCreator(int defaultFrequency);
+    int frequency;
     Image blankImg = GenImageColor(128,128,BLACK);
+    Image getGeneratedImage();
+    void saveGeneratedMap();
+    void setGeneratedImage();
+private:  
+    Image _generatedImage;
     Image createImage();
-    void saveGeneratedMap();    
 };
