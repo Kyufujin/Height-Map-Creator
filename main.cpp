@@ -1,10 +1,11 @@
 #include "raylib.h"
+#include "TextureCreator.hpp"
 
 int main()
 {
     // Init
     const int screenWidth = 800;
-    const int screenHeight = 450;
+    const int screenHeight = 500;
 
     InitWindow(screenWidth, screenHeight, "Generated Height Map");
 
@@ -14,7 +15,7 @@ int main()
     Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
     Texture2D texture = LoadTextureFromImage(image);                // Convert image to texture (VRAM)
 
-    Mesh mesh = GenMeshHeightmap(image, (Vector3){ 16, 8, 16 });    // Generate heightmap mesh (RAM and VRAM)
+    Mesh mesh = GenMeshHeightmap(image, (Vector3){ 16, 4, 16 });    // Generate heightmap mesh (RAM and VRAM)
     Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
 
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;// Set map diffuse texture
@@ -26,7 +27,10 @@ int main()
 
     SetTargetFPS(60);                       // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+    TextureCreator creator;
+    creator.saveGeneratedMap();
 
+    bool drawRoundedLines = false;
     // Main loop of the app
     while (!WindowShouldClose())            // Detect window close button or ESC key
     {
@@ -40,16 +44,14 @@ int main()
 
             BeginMode3D(camera);
 
-                DrawModel(model, mapPosition, 1.0f, RED);
+                DrawModel(model, mapPosition, 1.0f, DARKGREEN);
 
                 DrawGrid(20, 1.0f);
 
             EndMode3D();
 
             DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
-            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
-
-            DrawFPS(10, 10);
+            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);        
 
         EndDrawing();
     }
