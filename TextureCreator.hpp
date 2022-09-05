@@ -9,6 +9,7 @@ public:
     Image getGeneratedImage();
     void saveGeneratedMap();
     void setGeneratedImage();
+    void tintMap();
 private:  
     Image _generatedImage;
     Image createImage();

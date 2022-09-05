@@ -2,11 +2,12 @@
 
 TextureCreator::TextureCreator(int defaultFrequency) : frequency(defaultFrequency){
     setGeneratedImage();
+    tintMap();
 }
 
 Image TextureCreator::createImage(){
     Image generatedImg = blankImg;   
-    return generatedImg = GenImageCellular(32,32,frequency);
+    return generatedImg = GenImageCellular(128,128,frequency);
 }
 
 Image TextureCreator::getGeneratedImage(){
@@ -19,5 +20,9 @@ void TextureCreator::saveGeneratedMap(){
 
 void TextureCreator::setGeneratedImage(){
     _generatedImage = TextureCreator::createImage();
+}
+
+void TextureCreator::tintMap(){
+    ImageColorTint(&_generatedImage, WHITE);
 }
 

@@ -10,9 +10,9 @@ int main()
     InitWindow(screenWidth, screenHeight, "Generated Height Map");
 
     // Define custom camera
-    Camera camera = { { 18.0f, 18.0f, 18.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
+    Camera camera = { { 18.0f, 26.0f, 18.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
 
-    TextureCreator creator(8);   
+    TextureCreator creator(32);   
     creator.saveGeneratedMap();
 
     //Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
