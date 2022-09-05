@@ -18,7 +18,7 @@ int main()
     //Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
     Texture2D texture = LoadTextureFromImage(creator.getGeneratedImage());                // Convert image to texture (VRAM)
 
-    Mesh mesh = GenMeshHeightmap(creator.getGeneratedImage(), (Vector3){ 16, 4, 16 });    // Generate heightmap mesh (RAM and VRAM)
+    Mesh mesh = GenMeshHeightmap(creator.getGeneratedImage(), (Vector3){ 16, 6, 16 });    // Generate heightmap mesh (RAM and VRAM)
     Model model = LoadModelFromMesh(mesh);                          // Load model from generated mesh
 
     model.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = texture;// Set map diffuse texture
@@ -41,7 +41,7 @@ int main()
         // Draw       
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLACK);
 
             BeginMode3D(camera);
 

@@ -11,6 +11,7 @@ public:
     void setGeneratedImage();
     void tintMap();
 private:  
+    void fillTerrain(Image & _generatedImage);
     Image _generatedImage;
     Image createImage();
 };

@@ -2,7 +2,8 @@
 
 TextureCreator::TextureCreator(int defaultFrequency) : frequency(defaultFrequency){
     setGeneratedImage();
-    tintMap();
+    tintMap();    
+    fillTerrain(_generatedImage);
 }
 
 Image TextureCreator::createImage(){
@@ -24,5 +25,17 @@ void TextureCreator::setGeneratedImage(){
 
 void TextureCreator::tintMap(){
     ImageColorTint(&_generatedImage, WHITE);
+}
+
+void TextureCreator::fillTerrain(Image & _generatedImage){
+    unsigned char edgeColor = 0;
+    for(int i = 0; i<=3; i++){       
+        ImageDrawRectangleLines(&_generatedImage, {
+        static_cast<float>(i), static_cast<float>(i), 
+        static_cast<float>(128) - (i * 2),
+        static_cast<float>(128) - (i * 2)},
+        1, {edgeColor,edgeColor,edgeColor,255});
+        edgeColor+=10; // rectangleLines contain a constructor for a rectangle 
+    }  
 }
 
