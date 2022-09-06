@@ -1,10 +1,6 @@
 #include "raylib.h"
 #include "TextureCreator.hpp"
 
-#define RAYGUI_IMPLEMENTATION
-#include "raygui.h"
-
-
 int main()
 {
     // Init
@@ -57,9 +53,7 @@ int main()
 
             DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
             DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
-            DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);
-            GuiSliderBar((Rectangle){600,40,120,20},"Tint", NULL,5,0,10);        
-
+            DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);             
         EndDrawing();
     }
 
