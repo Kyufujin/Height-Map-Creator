@@ -1,6 +1,10 @@
 #include "raylib.h"
 #include "TextureCreator.hpp"
 
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
+
+
 int main()
 {
     // Init
@@ -12,7 +16,7 @@ int main()
     // Define custom camera
     Camera camera = { { 18.0f, 26.0f, 18.0f }, { 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, 45.0f, 0 };
 
-    TextureCreator creator(32);   
+    TextureCreator creator(32, 0, 0);   
     creator.saveGeneratedMap();
 
     //Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
@@ -52,7 +56,9 @@ int main()
             EndMode3D();
 
             DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
-            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);        
+            DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
+            DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);
+            GuiSliderBar((Rectangle){600,40,120,20},"Tint", NULL,5,0,10);        
 
         EndDrawing();
     }

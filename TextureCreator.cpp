@@ -1,9 +1,14 @@
 #include "TextureCreator.hpp"
 
-TextureCreator::TextureCreator(int defaultFrequency) : frequency(defaultFrequency){
+TextureCreator::TextureCreator(int defaultFrequency, float defaultForce, int defaultFlat) : frequency(defaultFrequency)
+                                                                                            ,force(defaultForce)
+                                                                                            ,flat(defaultFlat)
+{
     setGeneratedImage();
     tintMap();    
     fillTerrain(_generatedImage);
+    ImageColorContrast(&_generatedImage, force);
+    ImageColorBrightness(&_generatedImage, flat);
 }
 
 Image TextureCreator::createImage(){
