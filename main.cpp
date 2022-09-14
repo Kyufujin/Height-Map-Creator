@@ -2,6 +2,7 @@
 #include "TextureCreator.hpp"
 #include "UI.hpp"
 #include "TextField.hpp"
+#include "Button.hpp"
 
 #include <memory>
 
@@ -59,8 +60,13 @@ int main()
             DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
             DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);
             // ui starts here
-            std::shared_ptr<UI> ui = std::make_shared<TextField>("xd", "xdd");
-            ui->Display();
+            std::shared_ptr<UI> frequencyField = std::make_shared<TextField>("Frequency", std::to_string(creator.frequency), 60, 20);
+            std::shared_ptr<UI> forceField = std::make_shared<TextField>("Force", std::to_string(creator.force), 60, 60);
+            std::shared_ptr<UI> flatField = std::make_shared<TextField>("Flat", std::to_string(creator.flat), 60, 100);
+            frequencyField->Display();
+            forceField->Display();
+            flatField->Display();
+
             /*DrawRectangleRec((Rectangle){10,10,40,40},GRAY);            
             DrawText("Force \nForce level", 60, 20, 3, GREEN);
             DrawRectangleRec((Rectangle){130,10,40,40},GRAY);    

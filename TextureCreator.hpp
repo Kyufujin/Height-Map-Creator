@@ -4,7 +4,6 @@
 class TextureCreator{
 public:
     TextureCreator(int defaultFrequency, float defaultForce, int defaultFlat);
-    int frequency;
     Image blankImg = GenImageColor(128,128,BLACK);
     Image getGeneratedImage();
     void saveGeneratedMap();
@@ -12,6 +11,7 @@ public:
     void tintMap();
     float force;
     int flat;
+    int frequency;
 private:  
     void fillTerrain(Image & _generatedImage);
     Image _generatedImage;
