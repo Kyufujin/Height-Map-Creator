@@ -1,5 +1,9 @@
 #include "raylib.h"
 #include "TextureCreator.hpp"
+#include "UI.hpp"
+#include "TextField.hpp"
+
+#include <memory>
 
 int main()
 {
@@ -53,7 +57,20 @@ int main()
 
             DrawTexture(texture, screenWidth - texture.width - 20, 20, WHITE);
             DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
-            DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);             
+            DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);
+            // ui starts here
+            std::shared_ptr<UI> ui = std::make_shared<TextField>("xd", "xdd");
+            ui->Display();
+            /*DrawRectangleRec((Rectangle){10,10,40,40},GRAY);            
+            DrawText("Force \nForce level", 60, 20, 3, GREEN);
+            DrawRectangleRec((Rectangle){130,10,40,40},GRAY);    
+            if(CheckCollisionPointRec(GetMousePosition(),(Rectangle){10,10,40,40})){
+                DrawRectangleLines(10,10,40,40,RED);
+                if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+                {
+                    DrawText("Force \nForce level", 80, 80, 3, GREEN);
+                }               
+            } */ // this code is just a template, which can be used as a main ui. For now there is a placeholder for him   
         EndDrawing();
     }
 

@@ -31,7 +31,7 @@ FetchContent_Declare(
 )
 
 # Our Project
-add_executable(${PROJECT_NAME} main.cpp TextureCreator.cpp)
+add_executable(${PROJECT_NAME} main.cpp TextureCreator.cpp UI.cpp Button.cpp TextField.cpp)
 #set(raylib_VERBOSE 1)
 link_directories(raylib)
 target_link_libraries(${PROJECT_NAME} raylib)
