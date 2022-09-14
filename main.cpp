@@ -20,7 +20,6 @@ int main()
     TextureCreator creator(32, 0, 0);   
     creator.saveGeneratedMap();
 
-    //Image image = LoadImage("../heightmap.png");             // Load heightmap image (RAM), for now lets use some random heightmap
     Texture2D texture = LoadTextureFromImage(creator.getGeneratedImage());                // Convert image to texture (VRAM)
 
     Mesh mesh = GenMeshHeightmap(creator.getGeneratedImage(), (Vector3){ 16, 6, 16 });    // Generate heightmap mesh (RAM and VRAM)
@@ -61,16 +60,20 @@ int main()
             DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);
             // ui starts here
             std::shared_ptr<UI> frequencyField = std::make_shared<TextField>("Frequency", std::to_string(creator.frequency), 60, 20);
-            std::shared_ptr<UI> forceField = std::make_shared<TextField>("Force", std::to_string(creator.force), 60, 60);
-            std::shared_ptr<UI> flatField = std::make_shared<TextField>("Flat", std::to_string(creator.flat), 60, 100);
+            std::shared_ptr<UI> forceField = std::make_shared<TextField>("Force", std::to_string(creator.force), 60, 70);
+            std::shared_ptr<UI> flatField = std::make_shared<TextField>("Flat", std::to_string(creator.flat), 60, 120);
             frequencyField->Display();
             forceField->Display();
             flatField->Display();
 
-            /*DrawRectangleRec((Rectangle){10,10,40,40},GRAY);            
-            DrawText("Force \nForce level", 60, 20, 3, GREEN);
-            DrawRectangleRec((Rectangle){130,10,40,40},GRAY);    
-            if(CheckCollisionPointRec(GetMousePosition(),(Rectangle){10,10,40,40})){
+            frequencyField = std::make_shared<Button>(10,10);
+            forceField = std::make_shared<Button>(10,60);
+            flatField = std::make_shared<Button>(10,110);
+            frequencyField->Display();
+            forceField->Display();
+            flatField->Display();
+
+            /*if(CheckCollisionPointRec(GetMousePosition(),(Rectangle){10,10,40,40})){
                 DrawRectangleLines(10,10,40,40,RED);
                 if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
                 {
