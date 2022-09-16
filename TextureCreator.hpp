@@ -1,5 +1,7 @@
 #pragma once
 #include "raylib.h"
+#include <string>
+#include <map>
 
 class TextureCreator{
 public:
@@ -17,3 +19,13 @@ private:
     Image _generatedImage;
     Image createImage();
 };
+
+
+enum class CreatorParameters{
+    force,
+    flat,
+    frequency,
+    invalidParam
+};
+
+CreatorParameters returnParameter(std::string param);

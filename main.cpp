@@ -59,27 +59,22 @@ int main()
             DrawRectangleLines(screenWidth - texture.width - 20, 20, texture.width, texture.height, GREEN);
             DrawText("Use mouse scroll to change the view", screenWidth - 190, 160, 3, GREEN);
             // ui starts here
-            std::shared_ptr<UI> frequencyField = std::make_shared<TextField>("Frequency", std::to_string(creator.frequency), 60, 20);
-            std::shared_ptr<UI> forceField = std::make_shared<TextField>("Force", std::to_string(creator.force), 60, 70);
-            std::shared_ptr<UI> flatField = std::make_shared<TextField>("Flat", std::to_string(creator.flat), 60, 120);
+            std::shared_ptr<UI> frequencyField = std::make_shared<TextField>(creator, "Frequency", std::to_string(creator.frequency), 60, 20);
+            std::shared_ptr<UI> forceField = std::make_shared<TextField>(creator, "Force", std::to_string(creator.force), 60, 70);
+            std::shared_ptr<UI> flatField = std::make_shared<TextField>(creator, "Flat", std::to_string(creator.flat), 60, 120);
+            
             frequencyField->Display();
             forceField->Display();
             flatField->Display();
 
-            frequencyField = std::make_shared<Button>(10,10);
-            forceField = std::make_shared<Button>(10,60);
-            flatField = std::make_shared<Button>(10,110);
+            frequencyField = std::make_shared<Button>(creator,10,10);
+            forceField = std::make_shared<Button>(creator,10,60);
+            flatField = std::make_shared<Button>(creator,10,110);
+            
             frequencyField->Display();
             forceField->Display();
             flatField->Display();
-
-            /*if(CheckCollisionPointRec(GetMousePosition(),(Rectangle){10,10,40,40})){
-                DrawRectangleLines(10,10,40,40,RED);
-                if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-                {
-                    DrawText("Force \nForce level", 80, 80, 3, GREEN);
-                }               
-            } */ // this code is just a template, which can be used as a main ui. For now there is a placeholder for him   
+  
         EndDrawing();
     }
 
