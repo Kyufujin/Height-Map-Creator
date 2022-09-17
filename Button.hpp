@@ -11,6 +11,6 @@ public:
 private:
     void Display() override;   
     float _spawnPosX, _spawnPosY;
-    TextureCreator _generatedObj;     
+    TextureCreator& _generatedObj;     
     static constexpr int buttonSize = 40; // width and height value of the button
 };

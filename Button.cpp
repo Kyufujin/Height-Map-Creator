@@ -16,13 +16,13 @@ void Button::Display(){
     if(CheckCollisionPointRec(GetMousePosition(),buttonRecMinus)){
         DrawRectangleLines(_spawnPosX, _spawnPosY, buttonSize, buttonSize, GREEN);
             if(CheckCollision()){
-                DrawRectangleRec(buttonRecPlus, WHITE);
+                _generatedObj.force-=1;
             }
     } 
     else if(CheckCollisionPointRec(GetMousePosition(),buttonRecPlus)){
         DrawRectangleLines(_spawnPosX + 110, _spawnPosY, buttonSize, buttonSize, RED);
             if(CheckCollision()){
-                 DrawRectangleRec(buttonRecPlus, WHITE);
+                _generatedObj.force+=1;
             }
     } 
 }

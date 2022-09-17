@@ -13,7 +13,7 @@ public:
     void SetParamOnActionAdd();
     static constexpr int fontSize = 3; //default
 private:
-    TextureCreator _generatedParamObj;
+    TextureCreator& _generatedParamObj;
     std::string _textToDisplay;
     std::string _paramToDisplay;
     std::string getParamAsText(std::string textToDisplay, std::string paramToDisplay);
