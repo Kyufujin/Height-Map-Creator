@@ -46,15 +46,14 @@ void TextureCreator::fillTerrain(Image & _generatedImage){
 
 CreatorParameters returnParameter(std::string param){
     static const std::map<std::string, CreatorParameters> paramStrings {
-        {"force", CreatorParameters::force},
-        {"flat", CreatorParameters::flat},
-        {"frequency", CreatorParameters::frequency}
+        {"Force", CreatorParameters::Force},
+        {"Flat", CreatorParameters::Flat},
+        {"Frequency", CreatorParameters::Frequency}
     };
 
     auto iter = paramStrings.find(param);
     if(iter != paramStrings.end()){
         return iter->second;
     }
-    
     return CreatorParameters::invalidParam;
 }

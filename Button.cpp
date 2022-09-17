@@ -1,8 +1,9 @@
 #include "Button.hpp"
 
-Button::Button(TextureCreator& generatedObj,float spawnPosX, float spawnPosY) :  _generatedObj(generatedObj),   
-                                                                                 _spawnPosX(spawnPosX),
-                                                                                 _spawnPosY(spawnPosY)
+Button::Button(TextureCreator& generatedObj,std::string paramToModify, float spawnPosX, float spawnPosY) : _generatedObj(generatedObj),
+                                                                                                            _paramToModify(paramToModify),
+                                                                                                            _spawnPosX(spawnPosX),
+                                                                                                            _spawnPosY(spawnPosY)
 {}
 
 void Button::Display(){
@@ -12,17 +13,17 @@ void Button::Display(){
     // buttons fields
     DrawRectangleRec(buttonRecMinus, RED);
     DrawRectangleRec(buttonRecPlus, GREEN);
-
+    std::string temp = "Flat";
     if(CheckCollisionPointRec(GetMousePosition(),buttonRecMinus)){
         DrawRectangleLines(_spawnPosX, _spawnPosY, buttonSize, buttonSize, GREEN);
             if(CheckCollision()){
-                _generatedObj.force-=1;
+                SetParamOnActionSubtract();               
             }
     } 
     else if(CheckCollisionPointRec(GetMousePosition(),buttonRecPlus)){
         DrawRectangleLines(_spawnPosX + 110, _spawnPosY, buttonSize, buttonSize, RED);
             if(CheckCollision()){
-                _generatedObj.force+=1;
+                SetParamOnActionAdd();
             }
     } 
 }
@@ -34,3 +35,59 @@ bool Button::CheckCollision(){
     }
     return state;
 }
+
+
+void Button::SetParamOnActionSubtract(){
+    switch(returnParameter(_paramToModify))
+    {
+        case CreatorParameters::Force : {
+            // force action 
+            _generatedObj.force-=1;
+            break;
+        }
+
+        case CreatorParameters::Flat : {
+            // flat action
+            _generatedObj.flat-=1;
+            break;
+        }
+
+        case CreatorParameters::Frequency : {
+            // frequency action
+            _generatedObj.frequency-=1;
+            break;
+        }
+
+        default: {
+            break;
+        }
+    }
+}
+
+void Button::SetParamOnActionAdd(){
+    switch(returnParameter(_paramToModify))
+    {
+        case CreatorParameters::Force : {
+            // force action 
+            _generatedObj.force+=1;
+            break;
+        }
+
+        case CreatorParameters::Flat : {
+            // flat action
+            _generatedObj.flat+=1;
+            break;
+        }
+
+        case CreatorParameters::Frequency : {
+            // frequency action
+            _generatedObj.frequency+=1;
+            break;
+        }
+
+        default: {
+            break;
+        }
+    }
+}
+

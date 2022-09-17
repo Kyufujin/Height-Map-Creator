@@ -22,9 +22,9 @@ private:
 
 
 enum class CreatorParameters{
-    force,
-    flat,
-    frequency,
+    Force,
+    Flat,
+    Frequency,
     invalidParam
 };
 

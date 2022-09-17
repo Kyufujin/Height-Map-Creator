@@ -7,13 +7,10 @@
 
 class TextField : public UI{
 public:
-    TextField(TextureCreator& generatorParamObj, std::string textToDisplay, std::string paramToDisplay, int spawnPosX, int spawnPosY);
+    TextField(std::string textToDisplay, std::string paramToDisplay, int spawnPosX, int spawnPosY);
     void Display() override;
-    void SetParamOnActionSubtract();
-    void SetParamOnActionAdd();
     static constexpr int fontSize = 3; //default
-private:
-    TextureCreator& _generatedParamObj;
+private: 
     std::string _textToDisplay;
     std::string _paramToDisplay;
     std::string getParamAsText(std::string textToDisplay, std::string paramToDisplay);
