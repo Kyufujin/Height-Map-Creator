@@ -31,7 +31,7 @@ FetchContent_Declare(
 )
 
 # Our Project
-add_executable(${PROJECT_NAME} main.cpp TextureCreator.cpp UI.cpp Button.cpp TextField.cpp ButtonGenerate.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/TextureCreator.cpp src/UI.cpp src/Button.cpp src/TextField.cpp src/ButtonGenerate.cpp)
 #set(raylib_VERBOSE 1)
 link_directories(raylib)
 target_link_libraries(${PROJECT_NAME} raylib)
@@ -50,7 +50,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(${PROJECT_NAME}-ut test.cpp)
+add_executable(${PROJECT_NAME}-ut src/test.cpp)
 target_link_libraries(${PROJECT_NAME}-ut GTest::gtest_main)
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}-ut)
