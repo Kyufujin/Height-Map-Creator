@@ -15,6 +15,7 @@ public:
     void saveGeneratedMap();
     void setGeneratedImage();
     void eraseData();
+    void defineBaseConfig();
     float force;
     int flat;
     int frequency;
@@ -28,7 +29,6 @@ private:
     Image _generatedImage;
     Image createImage();
     void tintMap();
-    void defineBaseConfig();
 };
 
 

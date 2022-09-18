@@ -3,7 +3,11 @@
 TextureCreator::TextureCreator(int defaultFrequency, float defaultForce, int defaultFlat) : frequency(defaultFrequency)
                                                                                             ,force(defaultForce)
                                                                                             ,flat(defaultFlat)
-{
+{    
+    defineBaseConfig();
+}
+
+void TextureCreator::defineBaseConfig(){
     setGeneratedImage();
     tintMap();    
     fillTerrain(_generatedImage);
@@ -13,10 +17,6 @@ TextureCreator::TextureCreator(int defaultFrequency, float defaultForce, int def
     generatedMesh = getGeneratedMesh();
     generatedModel = getGeneratedModel();
     generatedMapPosition = getGeneratedMapPosition();
-    defineBaseConfig();
-}
-
-void TextureCreator::defineBaseConfig(){
     generatedModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = getGeneratedTexture();// Set map diffuse texture
     UnloadImage(getGeneratedImage());                     // Unload heightmap image from RAM, already uploaded to VRAM
 }
@@ -68,8 +68,8 @@ void TextureCreator::fillTerrain(Image & _generatedImage){
 }
 
 void TextureCreator::eraseData(){
-    UnloadTexture(LoadTextureFromImage(getGeneratedImage()));     // Unload texture
-    //UnloadModel(model);                                           // Unload model
+    UnloadTexture(generatedTexture);                                        // Unload texture
+    UnloadModel(generatedModel);                                           // Unload model
 }
 
 CreatorParameters returnParameter(std::string param){

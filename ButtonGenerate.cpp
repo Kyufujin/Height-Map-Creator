@@ -13,7 +13,8 @@ void ButtonGenerate::Display(){
     if(CheckCollisionPointRec(GetMousePosition(),buttonGenerate)){
         DrawRectangleLines(_spawnPosX, _spawnPosY, buttonSize + 110, buttonSize, GREEN);
             if(CheckCollision()){
-                _generatedObj.eraseData();              
+                _generatedObj.eraseData();
+                _generatedObj.defineBaseConfig();              
             }
     } 
 }
