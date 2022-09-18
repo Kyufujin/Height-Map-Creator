@@ -13,7 +13,7 @@ void Button::Display(){
     // buttons fields
     DrawRectangleRec(buttonRecMinus, RED);
     DrawRectangleRec(buttonRecPlus, GREEN);
-    std::string temp = "Flat";
+    
     if(CheckCollisionPointRec(GetMousePosition(),buttonRecMinus)){
         DrawRectangleLines(_spawnPosX, _spawnPosY, buttonSize, buttonSize, GREEN);
             if(CheckCollision()){

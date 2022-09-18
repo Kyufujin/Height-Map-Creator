@@ -10,6 +10,7 @@ TextField::TextField(std::string textToDisplay, std::string paramToDisplay, int 
 void TextField::Display(){
     const char * textField = getParamAsText(_textToDisplay, _paramToDisplay).c_str();
     DrawText(textField, _spawnPosX, _spawnPosY, fontSize, GREEN);
+    
 }
 
 std::string TextField::getParamAsText(std::string textToDisplay, std::string paramToDisplay){

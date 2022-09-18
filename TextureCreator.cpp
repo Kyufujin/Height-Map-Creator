@@ -9,6 +9,29 @@ TextureCreator::TextureCreator(int defaultFrequency, float defaultForce, int def
     fillTerrain(_generatedImage);
     ImageColorContrast(&_generatedImage, force);
     ImageColorBrightness(&_generatedImage, flat);
+    generatedTexture = getGeneratedTexture();
+    generatedMesh = getGeneratedMesh();
+    generatedModel = getGeneratedModel();
+    generatedMapPosition = getGeneratedMapPosition();
+    defineBaseConfig();
+}
+
+void TextureCreator::defineBaseConfig(){
+    generatedModel.materials[0].maps[MATERIAL_MAP_DIFFUSE].texture = getGeneratedTexture();// Set map diffuse texture
+    UnloadImage(getGeneratedImage());                     // Unload heightmap image from RAM, already uploaded to VRAM
+}
+
+Texture2D TextureCreator::getGeneratedTexture(){
+    return LoadTextureFromImage(getGeneratedImage());                // Convert image to texture (VRAM)
+}
+Mesh TextureCreator::getGeneratedMesh(){
+    return GenMeshHeightmap(getGeneratedImage(), (Vector3){ 16, 6, 16 });    // Generate heightmap mesh (RAM and VRAM)
+}
+Model TextureCreator::getGeneratedModel(){
+    return LoadModelFromMesh(getGeneratedMesh()); // Load model from generated mesh
+}
+Vector3 TextureCreator::getGeneratedMapPosition(){
+    return  { -8.0f, 0.0f, -8.0f };  // Define model position
 }
 
 Image TextureCreator::createImage(){
@@ -44,6 +67,11 @@ void TextureCreator::fillTerrain(Image & _generatedImage){
     }  
 }
 
+void TextureCreator::eraseData(){
+    UnloadTexture(LoadTextureFromImage(getGeneratedImage()));     // Unload texture
+    //UnloadModel(model);                                           // Unload model
+}
+
 CreatorParameters returnParameter(std::string param){
     static const std::map<std::string, CreatorParameters> paramStrings {
         {"Force", CreatorParameters::Force},
@@ -57,3 +85,5 @@ CreatorParameters returnParameter(std::string param){
     }
     return CreatorParameters::invalidParam;
 }
+
+
