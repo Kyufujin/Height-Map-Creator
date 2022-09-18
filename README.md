@@ -18,7 +18,8 @@ Instalation
 
     -Download Raylib c++ for Windows : https://github.com/raysan5/raylib/wiki/Working-on-Windows
     
-    -Download a template of the project, configured for windows : [raygui-master.zip](https://github.com/Kyufujin/Height-Map-Creator/files/9595232/raygui-master.zip)
+    -Download a template of the project, configured for windows : [RaylibProjectTemplate.zip](https://github.com/Kyufujin/Height-Map-Creator/files/9595268/RaylibProjectTemplate.zip)
+
 
     -Download this repository, delete CMAKELISTS.TXT and put everything in downloaded template folder. 
     
